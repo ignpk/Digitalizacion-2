@@ -139,6 +139,7 @@ backface-visibility: hidden;
 
 
 .fondo-rainbow{
+  background-size: auto;
   background: linear-gradient(45deg, rgba(0,255,76,1) 0%, rgba(255,0,228,1) 49%, rgba(0,202,255,1) 71%, rgba(255,248,0,1) 100%);
 }
 
@@ -153,6 +154,7 @@ backface-visibility: hidden;
   }
   
   .line {
+
     transition: transform 0.1s linear, filter 0.2s ease;
   }
 
@@ -164,11 +166,13 @@ backface-visibility: hidden;
 .rainbow{
   width: 100%;
 }
-
+.line-rainbow{
+  height:0px;
+}
   .line-white{
     background-color: white;
     height:0px;
-    box-shadow: 0px 0px 8px 8px rgb(255, 255, 255);
+    box-shadow: 0px 0px 15px 10px rgb(255, 255, 255);
     }
     .line-yellow{
       background-color: rgb(255, 233, 187);
@@ -296,11 +300,6 @@ cursor: pointer;
 .circle4 {
   /*---------------REFLEJO VENTANA-------------------*/
   box-shadow: 0px 0px 100px 100px rgba(255, 255, 255, 0.386);
-  z-index: 10;
-}
-.circle5{
-transform: rotateX(180deg);
-  box-shadow: 0px 0px 50px 50px rgb(255, 255, 255);
   z-index: 10;
 }
 
