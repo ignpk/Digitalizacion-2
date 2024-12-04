@@ -82,7 +82,8 @@
 .circle2,
 .circle3,
 .circle4,
-.circle5{
+.circle5,
+.circlenegativo {
   position: absolute;
 }
 
@@ -145,7 +146,14 @@ backface-visibility: hidden;
 
 .medio {z-index: 5;}
 .arriba {z-index: 10;}
-.sombra {z-index: 20;}
+.sombra {z-index: 12;}
+.capaholograficaestrellas{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  z-index: 10;
+}
 
   
 .line-container {
@@ -175,9 +183,9 @@ backface-visibility: hidden;
     box-shadow: 0px 0px 15px 10px rgb(255, 255, 255);
     }
     .line-yellow{
-      background-color: rgb(255, 233, 187);
+      background-color: rgb(255, 219, 142);
       height:5px;
-      box-shadow: 0px 0px 8px 4px rgb(255, 232, 187);
+      box-shadow: 0px 0px 8px 4px rgb(255, 219, 142);
       }
 
       .line-violet{
@@ -192,7 +200,7 @@ backface-visibility: hidden;
       }
 
 .carousel-container {
-  background: linear-gradient(180deg, rgba(62,124,255,1) 9%, rgba(255,255,255,1) 57%, rgba(154,154,154,1) 100%);
+  background: linear-gradient(180deg, rgb(47, 70, 120) 9%, rgb(110, 133, 214) 57%, rgb(28, 37, 111) 100%);
   display: flex;
   padding: 0px 250px;
 }
@@ -279,28 +287,38 @@ cursor: pointer;
 
 
 .circle1 {
-  /*---------------LUZ SUAVE-------------------*/
+  /*---------------abajo de troquel amplio-------------------*/
   box-shadow: 0px 0px 100px 100px rgb(255, 255, 255);
+  z-index: 9;
+}
+.circle5 {
+  /*---------------abajo de troquel chico-------------------*/
+  box-shadow: 0px 0px 50px 50px rgb(255, 255, 255);
   z-index: 9;
 }
 
 .circle2 {
-  /*---------------SATINADO-------------------*/
+  /*---------------arriba de troquel chico-------------------*/
   box-shadow: 0px 0px 50px 50px rgb(255, 255, 255);
   z-index: 10;
 }
 
 .circle3 {
-  /*---------------REFLEJO VENTANA-------------------*/
+  /*--------------NEGRO-------------------*/
   box-shadow: 0px 0px 100px 100px rgba(0, 0, 0, 0.613);
   z-index: 8;
 }
 
 
 .circle4 {
-  /*---------------REFLEJO VENTANA-------------------*/
+  /*---------------arriba de todo blanco-------------------*/
   box-shadow: 0px 0px 100px 100px rgba(255, 255, 255, 0.386);
-  z-index: 10;
+  z-index: 14;
+}
+.circlenegativo {
+  /*---------------sombra carta-------------------*/
+  box-shadow: 0px 0px 300px 100px rgba(0, 0, 0, 0.467);
+  z-index: 13;
 }
 
 
@@ -309,9 +327,10 @@ cursor: pointer;
 .circle3,
 .circle4,
 .circle5,
-.circle-inverse{
+.circlenegativo{
   border-radius: 50%;
 }
+
 
   /*-----------------------------MEDIA--------------------------------*/
 @media only screen and (max-width: 900px){

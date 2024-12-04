@@ -1,7 +1,6 @@
 
 
 // ----------------- RESPLANDOR CARTA Y EFECTO 3D -----------------
-
 document.addEventListener("DOMContentLoaded", function() { 
   const cartas = document.querySelectorAll(".carta");
 
@@ -11,9 +10,16 @@ document.addEventListener("DOMContentLoaded", function() {
       const circle = document.createElement("div");
       circle.classList.add(circleClass);
       elemento.appendChild(circle);
-    });
+
+     // Crear y agregar circlenegativo
+     const circleNegativo = document.createElement("div");
+     circleNegativo.classList.add(`${circleClass}-negativo`); // Nombre único para diferenciarlos
+     elemento.appendChild(circleNegativo);
+   });
 
     const fondoRainbow = elemento.querySelector(".fondo-rainbow");
+    const capaHolograficaEstrellas = elemento.querySelector(".capaholograficaestrellas");
+    
     let lastPositionX = 0;
     let lastPositionY = 0;
     let accumulatedY1 = 0;
@@ -34,9 +40,30 @@ document.addEventListener("DOMContentLoaded", function() {
       elemento.style.transform = `perspective(2000px) rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
 
       const circles = elemento.querySelectorAll("div[class^='circle']");
+      const circleNegativos = elemento.querySelectorAll("div[class*='circlenegativo']");
+
+      // Mover circles hacia el mouse
       circles.forEach(circle => {
         circle.style.left = `${clientX - rect.left}px`;
         circle.style.top = `${clientY - rect.top}px`;
+      });
+
+      // Mover circlenegativos en dirección opuesta al mouse y ajustar opacidad
+      circleNegativos.forEach(circleNegativo => {
+        const oppositeX = rect.width - (clientX - rect.left);
+        const oppositeY = rect.height - (clientY - rect.top);
+        circleNegativo.style.left = `${oppositeX}px`;
+        circleNegativo.style.top = `${oppositeY}px`;
+
+        // Cálculo de la distancia al puntero
+        const distanceX = oppositeX - (clientX - rect.left);
+        const distanceY = oppositeY - (clientY - rect.top);
+        const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+        // Ajuste de opacidad basado en la distancia
+        const maxDistance = Math.sqrt(rect.width * rect.width + rect.height * rect.height);
+        const opacity = Math.min(1, distance / (maxDistance / 2));
+        circleNegativo.style.opacity = opacity;
       });
 
       const deltaX = clientX - lastPositionX;
@@ -49,7 +76,12 @@ document.addEventListener("DOMContentLoaded", function() {
       accumulatedY2 -= totalDelta;
 
       const hueValue = (clientX + clientY) % 360;
-      fondoRainbow.style.filter = `saturate(2) hue-rotate(${hueValue}deg)`;
+      
+      [fondoRainbow, capaHolograficaEstrellas].forEach(elemento => {
+        if (elemento) {
+          elemento.style.filter = `saturate(2) hue-rotate(${hueValue}deg)`;
+        }
+      });
 
       const effectContainers = elemento.querySelectorAll('.efectoholograficolineas');
       effectContainers.forEach((container, idx) => {
@@ -76,8 +108,11 @@ document.addEventListener("DOMContentLoaded", function() {
       elemento.removeEventListener("mousemove", moverLineas);
       elemento.removeEventListener("touchmove", moverLineas);
       elemento.style.transform = "rotateY(0deg) rotateX(0deg)";
-      elemento.style.boxShadow = "none";
-      fondoRainbow.style.filter = "saturate(10)";
+      [fondoRainbow, capaHolograficaEstrellas].forEach(elemento => {
+        if (elemento) {
+          elemento.style.filter = "saturate(10)";
+        }
+      });
     };
 
     elemento.addEventListener("mouseenter", startInteraction);
@@ -88,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   cartas.forEach(aplicarEfectos);
 });
+
 
 
 // ----------------- CARTEL INICIO -----------------
