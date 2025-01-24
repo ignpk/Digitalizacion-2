@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-// ----------------- ANGULO DE ROTACIÓN Y CARTA AL AZAR -----------------
+// ----------------- 3 CARTAS AL AZAR -----------------
 
 document.addEventListener("DOMContentLoaded", function () {
   const carouselItems = document.querySelectorAll('.carousel-item'); // Selecciona los contenedores de tarjetas
@@ -215,5 +215,20 @@ document.addEventListener('DOMContentLoaded', function() {
     this.addEventListener('animationend', function() {
       this.classList.remove('animar');
     });
+  });
+});
+
+
+
+
+document.querySelectorAll('.tarjeta').forEach(tarjeta => {
+  // Evento para activar el flip al hacer clic
+  tarjeta.addEventListener('click', () => {
+    tarjeta.classList.add('flip');
+  });
+
+  // Evento para revertir el flip al salir del contenedor
+  tarjeta.addEventListener('mouseleave', () => {
+    tarjeta.classList.remove('flip');
   });
 });
